@@ -1,0 +1,37 @@
+<%= form_with model: @post, url: post_path, local: true do |f| %>
+  <div>
+    <%= f.label :file %><br />
+    <%= f.file_field :file %>
+  </div>
+  <div>
+    <%= f.label :title, "見出し"%>
+    <%= f.text_area :title %>
+  </div>
+  <div>
+    <%= f.label :content, "記事内容"%>
+    <%= f.text_area :content %>
+  </div>
+  <div>
+    <%= f.label :ec_url, "ECサイトのURL"%>
+    <%= f.text_area :ec_url %>
+  </div>
+  <div>
+    <%= f.label :delivery_url, "デリバリーサイトのURL"%>
+    <%= f.text_area :delivery_url %>
+  </div>
+  <div>
+    <%= f.label :prefecture_id, "都道府県"%>
+    <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {}) %>
+  </div>
+  <div>
+    <%= f.label :genre_id, "食ジャンル"%>
+    <%= f.collection_select(:genre_id, Genre.all, :id, :name, {}) %>
+  </div>
+  <div>
+    <%= f.label :tag_list, "タグ"%>
+    <%= f.text_field :tag_list, value: @post.tag_list.join(',')%>
+  </div>
+  <div>
+    <%= f.submit "投稿" %>
+  </div>
+<% end %>

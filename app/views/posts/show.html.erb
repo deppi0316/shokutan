@@ -1,0 +1,23 @@
+<%= render "shared/header" %>
+
+<h1>
+  <%= @post.title%>
+</h1>
+  <div>
+    <%= image_tag @post.file %>
+  </div>
+  <p>
+    <%= @post.content%>
+  </p>
+  <p>
+    <%= @post.ec_url%>
+  </p>
+  <p>
+    <%= @post.delivery_url%>
+  </p>
+  <% if user_signed_in? && current_user.id == @post.user_id %>
+    <div>
+      <%= link_to "編集" , edit_post_path(@post.id), method: :get%>
+      <%= link_to '削除', post_path(@post.id), method: :delete, data: { confirm: '削除しますか？' } %>
+    </div>
+  <%end%>

@@ -1,0 +1,26 @@
+<h2>メニューの登録</h2>
+
+<%= form_with(model: @menu, local: true) do |f| %>
+  <%#= render "devise/shared/error_messages", resource: @user %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :price %><br />
+    <%= f.text_field :price %>
+  </div>
+
+  <div class="field">
+    <%= f.label :image %><br />
+    <%= f.file_field :image %>
+  </div>
+
+  <div>
+    <%=f.submit "登録する"%>
+    <%=link_to '戻る', root_path%>
+  </div>
+
+<% end %>

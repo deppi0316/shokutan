@@ -1,0 +1,76 @@
+<%= render "shared/header" %>
+<div>
+  <%= search_form_for @q, url: search_posts_path do |f| %>
+    <div>
+      <%= f.label :title_or_content_cont, "名前" %>
+      <%= f.search_field :title_or_content_cont,placeholder:"記事の名前で検索" %>
+    </div>
+    <div>
+      <%= f.label :prefecture_id_eq, "都道府県" %>
+      <%= f.collection_select :prefecture_id_eq, Prefecture.all, :id, :name ,{} %>
+    </div>
+    <div>        
+      <%= f.label :genre_id_eq, "ジャンル" %>
+      <%= f.collection_select :genre_id_eq, Genre.all, :id, :name ,{} %>
+    </div>
+    <div>     
+      <%= f.submit '検索' %>
+    </div>
+  <%end%>
+</div>
+
+<h2>よく使われているタグ</h2>
+<% if @tags.present?%>
+  <% @tags.each do |tag|%>
+    <%= link_to "#{tag.name}" ,posts_path(tag: tag.name) %>
+  <%end%>
+  <%else%>
+  <p>登録されているタグはありません</p>
+<%end%>
+
+<div>
+  <% if @post.present? %>
+    <h1> <% "#{@tag} に関連する投稿" %> </h1>
+    <% @post.each do |post| %>
+      <h1>
+        <%= link_to post.title, post_path(post.id)%>
+      </h1>
+      <div>
+        <%= image_tag post.file %>
+      </div>
+      <p>
+        <%= post.content%>
+      </p>
+      <p>
+        <%= post.ec_url%>
+      </p>
+      <p>
+        <%= post.delivery_url%>
+      </p>
+      <div>
+        <%= render 'posts/tag_list', tag_list: post.tag_list %>
+      </div>
+    <%end%>
+  <%else%>
+    <% @posts.each do |post|%>
+      <h1>
+        <%= link_to post.title, post_path(post.id)%>
+      </h1>
+      <div>
+        <%= image_tag post.file %>
+      </div>
+      <p>
+        <%= post.content%>
+      </p>
+      <p>
+        <%= post.ec_url%>
+      </p>
+      <p>
+        <%= post.delivery_url%>
+      </p>
+      <div>
+        <%= render 'posts/tag_list', tag_list: post.tag_list %>
+      </div>
+    <%end%>
+  <%end%>
+</div>

@@ -1,0 +1,16 @@
+<h1>検索結果</h1>
+<table>
+  <tbody>
+    <% @results.each do |post|%>
+      <tr>
+        <td><%= link_to post.title, post_path(post.id)%></td>
+        <td><%= image_tag post.file%></td>
+        <td><%= post.content %></td>
+        <td><%= post.ec_url %></td>
+        <td><%= post.delivery_url %></td>
+      </tr>
+    <%end%>
+  </tbody>
+</table>
+
+<%= link_to "TOPに戻る", root_path %>

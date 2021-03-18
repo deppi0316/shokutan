@@ -1,0 +1,11 @@
+<div>
+  <%=image_tag menu.image%>
+  <div>
+    <%= menu.name%>
+    <p>
+      <%= menu.price %>
+    </p>
+  </div>
+  <%= link_to '編集', edit_menu_path(menu.id), method: :get %>
+  <%= link_to '削除', menu_path(menu.id), method: :delete, data: { confirm: '削除しますか？' } %>
+</div>

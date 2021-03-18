@@ -1,0 +1,47 @@
+<header>
+  <div class="header">
+    <div class="header-center">
+      <div class="header-left">
+        <div class="header-left-content">
+          <p class="header-catchcopy">おうちでお店ごはん</P>
+          <h1><%= link_to "食たん" ,root_path , class:"title"%> </h1>
+        </div>
+      </div>
+      <div>
+        <%= search_form_for @q, url: search_posts_path do |f| %>
+          <div>
+            <%= f.label :title_or_content_cont, "名前" %>
+            <%= f.search_field :title_or_content_cont,placeholder:"記事の名前で検索" %>
+          </div>
+          <div>
+            <%= f.label :prefecture_id_eq, "都道府県" %>
+            <%= f.collection_select :prefecture_id_eq, Prefecture.all, :id, :name ,{} %>
+          </div>
+          <div>        
+            <%= f.label :genre_id_eq, "ジャンル" %>
+            <%= f.collection_select :genre_id_eq, Genre.all, :id, :name ,{} %>
+          </div>
+          <div>     
+            <%= f.submit '検索' %>
+          </div>
+        <%end%>
+      </div>
+      <div class="header-right">
+        <nav class="nav">
+          <ul class = "menu-group">
+            <% if user_signed_in? %>
+              <li><%= link_to "新規記事投稿", new_post_path,class:"menu-item"%></li>
+              <li><%= link_to current_user.shop_name, user_path(current_user.id),class:"menu-item" %></li>
+              <li><%= link_to "ログアウト" , destroy_user_session_path,class:"menu-item", method: :delete %></li>
+            <% else %>
+              <li><%= link_to "新規登録", new_user_registration_path,class:"menu-item" %></li>
+              <li><%= link_to "ログイン", new_user_session_path,class:"menu-item" %></li>
+            <% end %>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+  

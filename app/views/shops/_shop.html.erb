@@ -1,0 +1,27 @@
+<div>
+  <p>
+  <%=shop.address%>
+  </p>
+  <p>
+  <%=shop.phone_number%>
+  </p>
+  <p>
+  <%= shop.station%>
+  </p>
+  <p>
+    <%= shop.parking_id %>
+  </p>
+  <p>
+    <%= shop.year %>
+  </p>
+  <p>
+    <%= shop.month %>
+  </p>
+  <p>
+    <%= shop.day %>
+  </p>
+  <p>
+    <%= shop.url %>
+  </p>
+  <%= link_to '編集', edit_shop_path(shop.id), method: :get %>
+</div>

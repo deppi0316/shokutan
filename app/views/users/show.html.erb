@@ -1,0 +1,16 @@
+<h2><%=current_user.shop_name%></h2>
+<%= link_to "メニューの追加", new_menu_path %>
+
+<h3>投稿メニュー一覧</h3>
+  <div>
+    <%= render partial: 'menus/menu', collection: @user.menus %>
+  </div>
+
+<h3>店舗情報</h3>
+  <div>
+    <%= render partial: 'shops/shop', locals: {shop: @user.shop} %>
+  </div>
+
+<div>
+  <%=link_to '戻る', root_path%>
+</div>
