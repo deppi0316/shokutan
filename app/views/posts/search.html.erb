@@ -1,16 +1,98 @@
-<h1>検索結果</h1>
-<table>
-  <tbody>
-    <% @results.each do |post|%>
-      <tr>
-        <td><%= link_to post.title, post_path(post.id)%></td>
-        <td><%= image_tag post.file%></td>
-        <td><%= post.content %></td>
-        <td><%= post.ec_url %></td>
-        <td><%= post.delivery_url %></td>
-      </tr>
-    <%end%>
-  </tbody>
-</table>
+<%= render "shared/header" %>
+<div class="main">
+  <div class="main-content">
+    <div class="main-article">
+      <h1>検索結果</h1>
+      <table>
+        <tbody>
+          <% @results.each do |post|%>
+            <li class="post-result-list">
+            <div class="post-image-box">
+              <%= image_tag post.file,class:"post-image"%>
+            </div>
+            <div class="post-info">
+              <div class="post-header">
+                <%= link_to post.user.shop_name, post_path(post.id), class:"post-title"%>
+                <p class="post-address"> <%= post.user.shop.address%></p>
+              </div>
+              <p class="result-content">
+                <%= post.content%>
+              </p>
+              <div>
+                <%= render 'posts/tag_list', tag_list: post.tag_list,class:"result-tag" %>
+              </div>
+            </div>
+            </tr>
+          <%end%>
+        </tbody>
+      </table>
+    </div>
 
-<%= link_to "TOPに戻る", root_path %>
+    <div class="side-content">
+      <div class="side-search">
+        <div class="search-title-box">
+          <h1 class="search-title">検索</h1>
+        </div>
+        <%= search_form_for @q, url: search_posts_path do |f| %>
+          <div class="main-search-box">
+            <div class="form-search-wrap">
+              <label class="search-text">記事の名前</label>
+            </div>
+            <div class="submit-box">
+              <%= f.search_field :title_or_content_cont,class:"input-search-field",placeholder:"記事の名前で検索" %>
+              <div class="main-search-submit-box">     
+                <%= f.submit '検索',class:"main-submit-btn" %>
+              </div>
+            </div>
+          </div>
+        <%end%>
+
+        <%= search_form_for @q, url: search_posts_path do |f| %>
+          <div class="main-search-box">
+            <div class="form-search-wrap">
+              <label class="search-text">都道府県</label>
+            </div>
+            <div class="submit-box">
+              <%= f.collection_select :prefecture_id_eq, Prefecture.all, :id, :name ,{},class:"input-search-field" %>
+              <div class="main-search-submit-box">     
+                <%= f.submit '検索',class:"main-submit-btn" %>
+              </div>
+            </div>
+          </div>
+        <%end%>
+
+        <%= search_form_for @q, url: search_posts_path do |f| %>
+          <div class="main-search-box">
+            <div class="form-search-wrap">
+              <label class="search-text">ジャンル</label>
+            </div>
+            <div class="submit-box">
+              <%= f.collection_select :genre_id_eq, Genre.all, :id, :name ,{},class:"input-search-field" %>
+              <div class="main-search-submit-box">     
+                <%= f.submit '検索',class:"main-submit-btn" %>
+              </div>
+            </div>
+          </div> 
+        <%end%>
+        <div class="main-tag-box">
+          <div class="form-tag-wrap">
+            <label class="tag-text">タグ</label>
+          </div>
+          <div class="tag-list">
+            <% if @tags.present?%>
+              <% @tags.each do |tag|%>
+                <div class="tag-box">
+                  <%= link_to "#{tag.name}" ,posts_path(tag: tag.name) ,class:"tag"%>
+                </div>
+              <%end%>
+              <%else%>
+              <p>登録されているタグはありません</p>
+            <%end%>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render "shared/footer" %>

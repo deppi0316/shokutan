@@ -1,16 +1,24 @@
-<h2><%=current_user.shop_name%></h2>
-<%= link_to "メニューの追加", new_menu_path %>
+<%= render "shared/header_second" %>
 
-<h3>投稿メニュー一覧</h3>
-  <div>
-    <%= render partial: 'menus/menu', collection: @user.menus %>
+<div class="registration-main">
+  <div class='form-wrap'>
+    <div class='form-header'>
+      <h1 class='form-header-text'>
+        <%="#{current_user.shop_name}さんのメニュー" %>
+      </h1>
+    </div>
+    <%= link_to "メニューの追加", new_menu_path %>
+    <div class="shop-wrap">
+      <h1 class="shop-text">メニュー一覧</h1>
+    </div>
+    <div class="user-menu">
+      <%= render partial: 'menus/menu', collection: @user.menus %>
+    </div>
+
+    <div>
+      <%= render partial: 'shops/shop', locals: {shop: @user.shop} %>
+    </div>
+    <%= link_to '編集', edit_shop_path(@user.shop.id), method: :get %>
   </div>
-
-<h3>店舗情報</h3>
-  <div>
-    <%= render partial: 'shops/shop', locals: {shop: @user.shop} %>
-  </div>
-
-<div>
-  <%=link_to '戻る', root_path%>
 </div>
+<%= render "shared/footer" %>

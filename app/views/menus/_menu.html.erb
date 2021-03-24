@@ -1,11 +1,20 @@
-<div>
-  <%=image_tag menu.image%>
-  <div>
-    <%= menu.name%>
-    <p>
-      <%= menu.price %>
-    </p>
+<div class="menu-all-box">
+  <div class="menu-box-colum">
+    <div class="menu-box">
+      <%=image_tag menu.image , class:"menu-image"%>
+    </div>
+
+    <div class="menu-info">
+      <P>
+        <%= menu.name%>
+      </p>
+      <p>
+        <%= menu.price %>円
+      </p>
+    </div>
+    <% if user_signed_in?  && current_user.id == menu.user_id %> 
+      <%= link_to '編集', edit_menu_path(menu.id), method: :get %>
+      <%= link_to '削除', menu_path(menu.id), method: :delete, data: { confirm: '削除しますか？' } %>
+    <%end%>
   </div>
-  <%= link_to '編集', edit_menu_path(menu.id), method: :get %>
-  <%= link_to '削除', menu_path(menu.id), method: :delete, data: { confirm: '削除しますか？' } %>
 </div>

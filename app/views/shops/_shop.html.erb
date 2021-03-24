@@ -1,27 +1,44 @@
-<div>
-  <p>
-  <%=shop.address%>
-  </p>
-  <p>
-  <%=shop.phone_number%>
-  </p>
-  <p>
-  <%= shop.station%>
-  </p>
-  <p>
-    <%= shop.parking_id %>
-  </p>
-  <p>
-    <%= shop.year %>
-  </p>
-  <p>
-    <%= shop.month %>
-  </p>
-  <p>
-    <%= shop.day %>
-  </p>
-  <p>
-    <%= shop.url %>
-  </p>
-  <%= link_to '編集', edit_shop_path(shop.id), method: :get %>
+<div class="shop-box">
+  <div class="shop-wrap">
+    <h1 class="shop-text">ショップ情報</h1>
+  </div>
+  <div class="shop-info-grid">
+    <div class="gridItem gridA">
+      <span>住所</span>
+    </div>
+    <div class="gridItem gridB">
+      <%=shop.address%>
+    </div>
+    <div class="gridItem gridC">
+      <span>電話番号</span>
+    </div>
+    <div class="gridItem gridD">
+    <%=shop.phone_number%>
+    </div>
+    <div class="gridItem gridE">
+      <span>最寄駅</span>
+    </div>
+    <div class="gridItem gridF">
+    <%= shop.station%>
+    </div>
+    <div class="gridItem gridG">
+      <span>駐車場</span>
+    </div>
+    <div class="gridItem gridH">
+      <%= shop.parking_id %>
+    </div>
+    <div class="gridItem gridI">
+      <span>オープン日</span>
+    </div>
+    <div class="gridItem gridJ">
+      <%= shop.year %>年<%= shop.month %>月<%= shop.day %>日
+    </div>
+    <div class="gridItem gridK">
+      <span>HP</span>
+    </div>
+    <div class="gridItem gridL">
+      <%= shop.url %>
+    </div>
+  </div>
+  
 </div>

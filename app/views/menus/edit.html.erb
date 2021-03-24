@@ -1,26 +1,45 @@
-<h2>メニューの編集</h2>
+<%= render "shared/header_second" %>
 
-<%= form_with(model: @menu, local: true) do |f| %>
+<%= form_with(model: @menu,class:"registration-main", local: true)  do |f| %>
   <%#= render "devise/shared/error_messages", resource: @user %>
+  <div class='form-wrap'>
+    <div class='form-header'>
+      <h1 class='form-header-text'>
+        メニュー追加
+      </h1>
+    </div>
+    <div class="form-content">
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
+    <div class="form-field">
+      <div class="form-text-wrap">
+        <label class="form-text">メニューの名前</label>
+          <span class="indispensable">必須</span>
+        </div>
+          <%= f.text_field :name,class:"input-field" %>
+      </div>
 
-  <div class="field">
-    <%= f.label :price %><br />
-    <%= f.text_field :price %>
-  </div>
+      <div class="form-field">
+        <div class="form-text-wrap">
+          <label class="form-text">値段</label>
+        </div>
+          <%= f.text_field :price,class:"input-field" %>
+      </div>
 
-  <div class="field">
-    <%= f.label :image %><br />
-    <%= f.file_field :image %>
-  </div>
+      <div class="form-field">
+        <div class="form-text-wrap">
+          <label class="form-text">メニュー写真</label>
+        </div>
+          <%= f.file_field :image,class:"input-image" %>
+      </div>
 
-  <div>
-    <%=f.submit "登録する"%>
-    <%=link_to '戻る', root_path%>
+        <div class="register-btn">
+        <%= f.submit "追加",class:"regist-btn" %>
+      </div>
+      </div>
+    </div>
   </div>
 
 <% end %>
+
+
+<%= render "shared/footer" %>

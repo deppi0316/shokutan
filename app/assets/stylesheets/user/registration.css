@@ -1,0 +1,135 @@
+.registration-main{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;  
+    margin: 30px 0;
+}
+
+.form-wrap{
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-header{
+  height: 80px;
+  width: 100%;
+  border-top: solid 1px #FAA55C;
+  border-bottom:solid 1px #FAA55C;
+  text-align: center;
+}
+
+.form-header-text{
+  font-size: 24px;
+  font-weight: bold;
+  margin: 23px auto;
+}
+
+.form-content{
+  width: 100%;
+  border-bottom:solid 1px #FAA55C;
+  margin: 30px auto;
+}
+
+.form-field{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+
+.form-text-wrap{
+  width: 100%;
+  height: 20%;
+}
+
+.form-text{
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.indispensable{
+  margin-left: 8px;
+  padding: 3px;
+  color: #ea352d;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.input-field{
+  width: 100%;
+  margin-top: 5px;
+  height: 48px;
+  padding: 10px 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: #fff;
+  font-size: 16px;
+  resize: none;
+}
+
+
+.register-btn{
+  width: 50%;
+  padding: 40px 0 0 10px;
+  margin: 30px auto;
+}
+
+.regist-btn{
+  width: 100%;
+  background: #FAA55C;
+  border: 1px solid #FAA55C;
+  color: #fff;
+  line-height: 48px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.form-birth-field{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.form-birth-field p{
+  line-height: 60px;
+  padding: 0 5px;
+}
+
+.input-birth-field{
+  width: 75px;
+  margin-top: 5px;
+  height: 45px;
+  padding-left: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: #fff;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.select-box{
+  width: 100%;
+  margin-top: 5px;
+  height: 48px;
+  padding: 10px 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: #fff;
+  font-size: 16px;
+  resize: none;
+}
+
+
+.input-session-field{
+  width: 100%;
+  margin-top: 5px;
+  height: 24px;
+  padding: 10px 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: #fff;
+  font-size: 16px;
+  resize: none;
+}

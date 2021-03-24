@@ -1,51 +1,72 @@
-<h2>詳細情報</h2>
+<%= render "shared/header_second" %>
 
-<%= form_for @shop do |f| %>
+<%= form_with model:@shop, class:"registration-main", local:true do |f| %>
   <%= render "devise/shared/error_messages", resource: @shop %>
 
-  <div class="field">
-    <%= f.label :address %><br />
-    <%= f.text_field :address %>
+  <div class='form-wrap'>
+    <div class='form-header'>
+      <h1 class='form-header-text'>
+        お店情報入力
+      </h1>
+    </div>
+
+    <div class="form-content">
+
+      <div class="form-field">
+        <div class="form-text-wrap">
+          <label class="form-text">店舗住所</label>
+        </div>
+        <%= f.text_field :address,class:"input-field", placeholder:"(例)神奈川県茅ヶ崎市○○町123-4"  %>
+      </div>
+
+      <div class="form-field">
+        <div class="form-text-wrap">
+          <label class="form-text">電話番号</label>
+        </div>
+        <%= f.text_field :phone_number,class:"input-field", placeholder:"(例)090-1234-5678"  %>
+      </div>
+
+      <div class="form-field">
+        <div class="form-text-wrap">
+          <label class="form-text">最寄りの駅</label>
+        </div>
+        <%= f.text_field :station,class:"input-field", placeholder:"(例)茅ヶ崎駅"  %>
+      </div>
+
+      <div class="form-field">
+        <div class="form-text-wrap">
+          <label class="form-text">駐車場有無</label>
+        </div>
+        <%= f.collection_select(:parking_id, Parking.all, :id, :name, {},{class:"select-box"}) %>
+      </div>
+
+      <div class="form-field">
+        <div class="form-text-wrap">
+          <label class="form-text">オープン日</label>
+        </div>
+        <div class="form-birth-field">
+          <%= f.text_field :year,class:"input-birth-field", placeholder:"(例)2000"  %><P>年</p>
+          <%= f.text_field :month,class:"input-birth-field", placeholder:"(例)1"  %><P>月</p>
+          <%= f.text_field :day,class:"input-birth-field", placeholder:"(例)1"  %><P>日</p>
+        </div>
+      </div>
+
+      <div class="form-field">
+        <div class="form-text-wrap">
+          <label class="form-text">ホームページURL</label>
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.text_field :url,class:"input-field", placeholder:"(例)http://~~~"  %>
+      </div>
+
+      <div class="register-btn">
+        <%= f.submit "登録",class:"regist-btn" %>
+      </div>
+
+    </div>
+    
   </div>
 
-  <div class="field">
-    <%= f.label :phone_number %><br />
-    <%= f.text_field :phone_number %>
-  </div>
-
-  <div class="field">
-    <%= f.label :station %><br />
-    <%= f.text_field :station %>
-  </div>
-
-  <div class="field"> 
-    <%= f.label :parking_id %><br />
-    <%= f.collection_select(:parking_id, Parking.all, :id, :name, {}) %>
-  </div>
-
-  <div class="field">
-    <%= f.label :year %><br />
-    <%= f.text_field :year %>
-  </div>
-
-  <div class="field">
-    <%= f.label :month %><br />
-    <%= f.text_field :month %>
-  </div>
-
-  <div class="field">
-    <%= f.label :day %><br />
-    <%= f.text_field :day %>
-  </div>
-
-  <div class="field">
-    <%= f.label :url %><br />
-    <%= f.text_field :url %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+<%= render "shared/footer" %>

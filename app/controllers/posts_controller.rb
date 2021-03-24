@@ -7,9 +7,10 @@ class PostsController < ApplicationController
       @post = Post.tagged_with(params[:tag]).order(created_at: :desc)
     end
     if params[:tag_name]
-      @posts = Post.tagged_with("#{params[:tag_name]}").order(created_at: :desc)
+      @post = Post.tagged_with("#{params[:tag_name]}").order(created_at: :desc)
     else
-      @posts = Post.all.order(created_at: :desc)
+      @posts = Post.limit(5).order(created_at: :desc)
+      @all_ranks = Post.find(Like.group(:post_id).order('count(post_id) desc').limit(5).pluck(:post_id))
     end
   end
 
@@ -29,6 +30,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @like = Like.new
   end
 
   def edit
@@ -51,6 +53,14 @@ class PostsController < ApplicationController
 
   def search
     @results = @q.result(distinct: true)
+    @tags = Post.tag_counts_on(:tags).most_used(10)
+    if @tag = params[:tag]
+      @post = Post.tagged_with(params[:tag]).order(created_at: :desc)
+    end
+    if params[:tag_name]
+      @post = Post.tagged_with("#{params[:tag_name]}").order(created_at: :desc)
+    else
+    end
   end
 
   private

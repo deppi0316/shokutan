@@ -1,0 +1,45 @@
+.show-image-box{
+  margin: 10px 10px 20px 10px;
+}
+
+.show-image{
+  width: 800px;
+  height: 510px;
+}
+
+.show-info-box{
+  margin: 0 60px 10px 10px;
+}
+
+.like-box{
+  margin: 10px 60px 20px 10px;
+  padding-bottom: 20px;
+  border-bottom: solid 1px #F5F5F5;
+  text-align: right;
+}
+
+.like-count{
+  margin-bottom: 5px;
+}
+
+.show-text-box{
+  padding-bottom: 40px;
+  border-bottom: solid 1px #F5F5F5;
+}
+
+.show-title{
+  color: #13131e;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 2rem;
+  padding: 5px 0;
+}
+
+.show-content-box{
+  margin-top: 8px;
+}
+
+.url-box{
+  margin-top: 40px;
+}
+

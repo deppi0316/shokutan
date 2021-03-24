@@ -1,3 +1,35 @@
 // Place all the styles related to the shops controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.shop-box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-top: solid 1px #F5F5F5;
+}
+
+.shop-wrap{
+  width: 100%;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-bottom: solid 1px #F5F5F5;
+}
+
+.shop-text{
+  font-size: 20px;
+}
+
+.shop-info-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 10px;
+}
+
+.gridItem {
+  padding: 10px 20px;
+  border: solid 1px #F5F5F5;
+}

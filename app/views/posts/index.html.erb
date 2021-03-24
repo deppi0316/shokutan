@@ -1,76 +1,142 @@
 <%= render "shared/header" %>
-<div>
-  <%= search_form_for @q, url: search_posts_path do |f| %>
-    <div>
-      <%= f.label :title_or_content_cont, "名前" %>
-      <%= f.search_field :title_or_content_cont,placeholder:"記事の名前で検索" %>
+
+<div class="main">
+  <div class="main-content">
+    <div class="main-article">
+      <% if @post.present? %>
+        <h1><%= "#{@tag} に関連する投稿" %></h1>
+          <ul class="post-list" >
+            <% @post.each do |post| %>
+              <li class="post-result-list">
+                <div class="post-image-box">
+                  <%= image_tag post.file, class:"post-image" %>
+                </div>
+                <div class="post-info">
+                  <div class="post-header">
+                    <%= link_to post.user.shop_name, post_path(post.id), class:"post-title"%>
+                      <p class="post-address"> <%= post.user.shop.address%></p>
+                  </div>
+                  <p class="result-content">
+                    <%= post.content%>
+                  </p>
+                  <div>
+                    <%= render 'posts/tag_list', tag_list: post.tag_list,class:"result-tag" %>
+                  </div>
+                </div>
+              </li>
+            <%end%>
+          </ul>
+          <div class="border-bottom-box">
+          </div>
+        <%else%>
+        <div class="main-content-ranking">
+          <h2 class="new-header">いいねランキング上位５店舗</h2>
+            <ul class="new-article-lists">
+              <% @all_ranks.each do |post|%>
+                <li class='list'>
+                  <div class="post-image-box">
+                    <%= image_tag post.file ,class:"main-content-image"%>
+                  </div>
+                  <div class="content-info">
+                    <div class="content-title-box">
+                      <%= link_to post.user.shop_name, post_path(post.id),class:"main-content-title"%>
+                    </div>
+                    <div class="content-address-box">
+                      <p class="main-content-title"> <%= post.user.shop.address %></p>
+                    </div>
+                  </div>
+                </li>
+              <%end%>
+            </ul>
+        </div>
+        <div class="main-content-new" >
+          <h2 class="new-header">新着店舗一覧</h2>
+          <ul class="new-article-lists">
+            <% @posts.each do |post|%>
+              <li class='list'>
+                <div class="post-image-box">
+                  <%= image_tag post.file ,class:"main-content-image"%>
+                </div>
+                <div class="content-info">
+                  <div class="content-title-box">
+                    <%= link_to post.user.shop_name, post_path(post.id),class:"main-content-title"%>
+                  </div>
+                  <div class="content-address-box">
+                    <p class="main-address-title"> <%= post.user.shop.address %></p>
+                  </div>
+                </div>
+              </li>
+            <%end%>
+          </ul>
+        </div>
+      <%end%>
     </div>
-    <div>
-      <%= f.label :prefecture_id_eq, "都道府県" %>
-      <%= f.collection_select :prefecture_id_eq, Prefecture.all, :id, :name ,{} %>
+
+    <div class="side-content">
+      <div class="side-search">
+        <div class="search-title-box">
+          <h1 class="search-title">検索</h1>
+        </div>
+        <%= search_form_for @q, url: search_posts_path do |f| %>
+          <div class="main-search-box">
+            <div class="form-search-wrap">
+              <label class="search-text">記事の名前</label>
+            </div>
+            <div class="submit-box">
+              <%= f.search_field :title_or_content_cont,class:"input-search-field",placeholder:"記事の名前で検索" %>
+              <div class="main-search-submit-box">     
+                <%= f.submit '検索',class:"main-submit-btn" %>
+              </div>
+            </div>
+          </div>
+        <%end%>
+
+        <%= search_form_for @q, url: search_posts_path do |f| %>
+          <div class="main-search-box">
+            <div class="form-search-wrap">
+              <label class="search-text">都道府県</label>
+            </div>
+            <div class="submit-box">
+              <%= f.collection_select :prefecture_id_eq, Prefecture.all, :id, :name ,{},class:"input-search-field" %>
+              <div class="main-search-submit-box">     
+                <%= f.submit '検索',class:"main-submit-btn" %>
+              </div>
+            </div>
+          </div>
+        <%end%>
+
+        <%= search_form_for @q, url: search_posts_path do |f| %>
+          <div class="main-search-box">
+            <div class="form-search-wrap">
+              <label class="search-text">ジャンル</label>
+            </div>
+            <div class="submit-box">
+              <%= f.collection_select :genre_id_eq, Genre.all, :id, :name ,{},class:"input-search-field" %>
+              <div class="main-search-submit-box">     
+                <%= f.submit '検索',class:"main-submit-btn" %>
+              </div>
+            </div>
+          </div> 
+        <%end%>
+        <div class="main-tag-box">
+          <div class="form-tag-wrap">
+            <label class="tag-text">タグ</label>
+          </div>
+          <div class="tag-list">
+            <% if @tags.present?%>
+              <% @tags.each do |tag|%>
+                <div class="tag-box">
+                  <%= link_to "#{tag.name}" ,posts_path(tag: tag.name) ,class:"tag"%>
+                </div>
+              <%end%>
+              <%else%>
+              <p>登録されているタグはありません</p>
+            <%end%>
+          </div>
+        </div>
+      </div>
     </div>
-    <div>        
-      <%= f.label :genre_id_eq, "ジャンル" %>
-      <%= f.collection_select :genre_id_eq, Genre.all, :id, :name ,{} %>
-    </div>
-    <div>     
-      <%= f.submit '検索' %>
-    </div>
-  <%end%>
+  </div>
 </div>
 
-<h2>よく使われているタグ</h2>
-<% if @tags.present?%>
-  <% @tags.each do |tag|%>
-    <%= link_to "#{tag.name}" ,posts_path(tag: tag.name) %>
-  <%end%>
-  <%else%>
-  <p>登録されているタグはありません</p>
-<%end%>
-
-<div>
-  <% if @post.present? %>
-    <h1> <% "#{@tag} に関連する投稿" %> </h1>
-    <% @post.each do |post| %>
-      <h1>
-        <%= link_to post.title, post_path(post.id)%>
-      </h1>
-      <div>
-        <%= image_tag post.file %>
-      </div>
-      <p>
-        <%= post.content%>
-      </p>
-      <p>
-        <%= post.ec_url%>
-      </p>
-      <p>
-        <%= post.delivery_url%>
-      </p>
-      <div>
-        <%= render 'posts/tag_list', tag_list: post.tag_list %>
-      </div>
-    <%end%>
-  <%else%>
-    <% @posts.each do |post|%>
-      <h1>
-        <%= link_to post.title, post_path(post.id)%>
-      </h1>
-      <div>
-        <%= image_tag post.file %>
-      </div>
-      <p>
-        <%= post.content%>
-      </p>
-      <p>
-        <%= post.ec_url%>
-      </p>
-      <p>
-        <%= post.delivery_url%>
-      </p>
-      <div>
-        <%= render 'posts/tag_list', tag_list: post.tag_list %>
-      </div>
-    <%end%>
-  <%end%>
-</div>
+<%= render "shared/footer" %>

@@ -1,23 +1,11 @@
 <header>
   <div class="header">
     <div class="header-center">
-      <div class="header-left">
+      <div class="header-second-left">
         <div class="header-left-content">
           <p class="header-catchcopy">おうちでお店ごはん</P>
           <h1><%= link_to "食たん" ,root_path , class:"title"%> </h1>
         </div>
-      </div>
-      <div class="header-form">
-        <%= search_form_for @q, url: search_posts_path do |f| %>
-          <div class="header-search">
-            <div class="search-content">
-              <%= f.search_field :title_or_content_cont,placeholder:"記事の名前で検索",class:"search-form" %>
-            </div>
-            <div class="search-content">     
-              <%= f.submit '検索',class:"search-submit"  %>
-            </div>
-          </div>
-        <%end%>
       </div>
       <div class="header-right">
         <nav class="nav">
@@ -36,5 +24,3 @@
     </div>
   </div>
 </header>
-
-  

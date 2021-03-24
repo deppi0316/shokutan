@@ -1,3 +1,15 @@
-<h2>登録完了しました</h2>
-<%= link_to "#{current_user.shop_name}さんのメニューに戻る", user_path(current_user.id) %>
-<%= link_to "TOPに戻る", root_path %>
+<%= render "shared/header_second" %>
+<div class="registration-main">
+  <div class='form-wrap'>
+      <div class='form-header'>
+        <h1 class='form-header-text'>
+          登録完了
+        </h1>
+      </div>
+    <%= link_to "#{current_user.shop_name}さんのメニューに戻る", user_path(current_user.id),class:"user-show"%>
+    <%= link_to "TOPに戻る", root_path ,class:"top"%>
+  </div>
+</div>
+
+<%= render "shared/footer" %>
+

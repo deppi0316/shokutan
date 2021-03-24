@@ -1,3 +1,236 @@
 // Place all the styles related to the posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.main{
+  width: 100%;
+  background-color:#FFFFFF;
+  display: flex;
+  justify-content: center;
+}
+
+.main-content{
+  width: 1160px;
+  display: flex;
+  padding: 10px 0;
+}
+
+.main-article{
+  width: 80vw;
+  flex-direction: column;
+}
+
+.main-content-ranking{
+  height: 270px;
+  margin: 10px;
+  border: solid 2px #FAA55C;
+  display: flex;
+  flex-direction: column;
+}
+
+.ranking-header{
+  font-size: 20px;
+  height: 20px;
+  border-bottom: solid 2px #FAA55C;
+}
+
+.ranking-article{
+  display: flex;
+}
+
+.main-content-new{
+  height: 270px;
+  margin: 10px;
+  border: solid 2px #FAA55C;
+  display: flex;
+  flex-direction: column;
+}
+
+.new-header{
+  font-size: 20px;
+  height: 20px;
+  border-bottom: solid 2px #FAA55C;
+}
+
+.new-article-lists{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.list{
+  display: flex;
+  flex-direction: column;
+  margin: 10px 10px 10px 0;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.main-content-image{
+  width: 150px;
+  height: 150px;
+}
+
+.content-info{
+  overflow: hidden;
+  width: 100px;
+  height: 50px;
+  margin-top: 5px;
+	line-height: 1.0;
+  white-space: nowrap;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-address-box{
+  margin-top: 5px;
+  font-size: 10px;
+}
+
+.main-content-title{
+  text-overflow: ellipsis;
+}
+
+.side-content{
+  width: 20vw;
+  flex-direction: column;
+}
+
+.side-search{
+  margin: 10px;
+  border-left: solid 2px #FAA55C;
+  border-right: solid 2px #FAA55C;
+  display: flex;
+  flex-direction: column;
+}
+
+.search-title-box{
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding-top: 30px;
+  border-top: solid 1px #FAA55C;
+}
+
+.search-title{
+  font-size: 25px;
+}
+
+.main-search-box{
+  height: 85px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding-top: 10px;
+  border-top: solid 1px #FAA55C;
+}
+
+.form-search-wrap{
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.search-text{
+  font-size: 20px;
+}
+
+.input-search-field{
+  width: 50vh;
+  margin-left: 20px;
+}
+
+.submit-box{
+  display: flex;
+}
+
+.main-submit-btn{
+  margin-left: 15px;
+}
+
+.main-tag-box{
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  margin: 0 10px 0 10px;
+  padding: 20px 0 30px 0;
+  border-top: solid 1px #FAA55C;
+  border-bottom: solid 1px #FAA55C;
+}
+
+.form-tag-wrap{
+  margin-bottom: 20px;
+}
+
+.tag-text{
+  font-size: 20px;
+}
+
+.tag-list{
+  display: flex;
+  flex-wrap: wrap;
+
+}
+
+.tag-box{
+  margin-right: 5px;
+  width: 60px;
+  margin: 10px;
+}
+
+.tag{
+  padding:5px;
+  color:#ffffff;
+  font-size: 10px;
+  line-height: 100%;
+  text-align: center;
+  text-decoration: none;
+  border-radius:4px;
+  background: #d3d3d3;
+}
+
+.show-url-box{
+  width: 100%;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.ec-url-box{
+  margin: auto;
+}
+
+.delivery-url-box{
+  margin: auto;
+
+}
+
+.btn-url{
+  background-color: #FAA55C;
+  border-radius: 4px;
+  font-size: 14px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+  width: 200px;
+  height: 25px;
+}
+
+.btn-url:hover {
+  opacity: 0.8;
+}
+
+.btn-url:active {
+  -webkit-transform: translateY(2px);
+  transform: translateY(2px);
+  border-bottom: none;
+}

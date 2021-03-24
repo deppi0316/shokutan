@@ -1,37 +1,77 @@
-<%= form_with model: @post, url: posts_path, local: true do |f| %>
-  <div>
-    <%= f.label :file %><br />
-    <%= f.file_field :file %>
-  </div>
-  <div>
-    <%= f.label :title, "見出し"%>
-    <%= f.text_area :title %>
-  </div>
-  <div>
-    <%= f.label :content, "記事内容"%>
-    <%= f.text_area :content %>
-  </div>
-  <div>
-    <%= f.label :ec_url, "ECサイトのURL"%>
-    <%= f.text_area :ec_url %>
-  </div>
-  <div>
-    <%= f.label :delivery_url, "デリバリーサイトのURL"%>
-    <%= f.text_area :delivery_url %>
-  </div>
-  <div>
-    <%= f.label :prefecture_id, "都道府県"%>
-    <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {}) %>
-  </div>
-  <div>
-    <%= f.label :genre_id, "食ジャンル"%>
-    <%= f.collection_select(:genre_id, Genre.all, :id, :name, {}) %>
-  </div>
-  <div>
-    <%= f.label :tag_list, "タグ"%>
-    <%= f.text_field :tag_list, value: @post.tag_list.join(',')%>
-  </div>
-  <div>
-    <%= f.submit "投稿" %>
+<%= render "shared/header_second" %>
+
+  
+
+<%= form_with model: @post, url: posts_path, class: 'registration-main', local: true do |f| %>
+
+  <div class='form-wrap'>
+    <div class='form-header'>
+      <h1 class='form-header-text'>
+        お店情報入力
+      </h1>
+    </div>
+    <div class="form-content">
+
+      <div class="form-field">
+        <div class="form-text-wrap">
+          <label class="form-text">TOPイメージ</label>
+          <span class="indispensable">必須</span>
+        </div>
+      <%= f.file_field :file ,class:"input-image"%>
+      </div>
+      <div class="form-field">
+        <div class="form-text-wrap">
+          <label class="form-text">見出し</label>
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.text_area :title,class:"input-field", placeholder:"見出しを書きましょう"  %>
+      </div>
+      <div class="form-field">
+        <div class="form-text-wrap">
+          <label class="form-text">店舗説明文</label>
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.text_area :content,class:"input-field", placeholder:"店舗の説明文を記載しましょう"  %>
+      </div>
+      <div class="form-field">
+        <div class="form-text-wrap">
+          <label class="form-text">ECサイトURL</label>
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.text_area :ec_url ,class:"input-field", placeholder:"http://tset.testec.com" %>
+      </div>
+      <div class="form-field">
+        <div class="form-text-wrap">
+          <label class="form-text">デリバリーURL</label>
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.text_area :delivery_url,class:"input-field", placeholder:"http://test.testdelivery.com"  %>
+      </div>
+      <div class="form-field">
+        <div class="form-text-wrap">
+          <label class="form-text">都道府県</label>
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {},{class:"select-box"}) %>
+      </div>
+      <div class="form-field">
+        <div class="form-text-wrap">
+          <label class="form-text">食ジャンル</label>
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.collection_select(:genre_id, Genre.all, :id, :name, {},{class:"select-box"}) %>
+      </div>
+      <div class="form-field">
+        <div class="form-text-wrap">
+          <label class="form-text">タグ</label>
+        </div>
+        <%= f.text_field :tag_list, value: @post.tag_list.join(','),class:"input-field", placeholder:", で区切ると複数追加できます" %>
+      </div>
+      <div class="register-btn">
+        <%= f.submit "投稿",class:"regist-btn" %>
+      </div>
+    </div>
   </div>
 <% end %>
+
+<%= render "shared/footer" %>
