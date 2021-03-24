@@ -16,11 +16,11 @@ AddMissingUniqueIndices.class_eval do
   end
 
   def self.down
-  #  remove_index ActsAsTaggableOn.tags_table, :name
-  #
-  #  remove_index ActsAsTaggableOn.taggings_table, name: 'taggings_idx'
-  #
-  #  add_index ActsAsTaggableOn.taggings_table, :tag_id unless index_exists?(ActsAsTaggableOn.taggings_table, :tag_id)
-  #  add_index ActsAsTaggableOn.taggings_table, [:taggable_id, :taggable_type, :context], name: 'taggings_taggable_context_idx'
+    #  remove_index ActsAsTaggableOn.tags_table, :name
+    #
+    #  remove_index ActsAsTaggableOn.taggings_table, name: 'taggings_idx'
+    #
+    #  add_index ActsAsTaggableOn.taggings_table, :tag_id unless index_exists?(ActsAsTaggableOn.taggings_table, :tag_id)
+    #  add_index ActsAsTaggableOn.taggings_table, [:taggable_id, :taggable_type, :context], name: 'taggings_taggable_context_idx'
   end
 end

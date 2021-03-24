@@ -4,13 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :owner_name ,presence: true
+  validates :owner_name, presence: true
   has_one :shop
   has_many :menus
   has_many :posts
   has_many :likes, dependent: :destroy
   has_many :like_posts, through: :likes, source: :post
   def already_liked?(post)
-    self.likes.exists?(post_id: post.id)
+    likes.exists?(post_id: post.id)
   end
 end

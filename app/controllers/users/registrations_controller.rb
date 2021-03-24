@@ -10,33 +10,30 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
     @user = User.new(sign_up_params)
-     unless @user.valid?
-      render :new and return
-     end
-    session["devise.regist_data"] = {user: @user.attributes}
-    session["devise.regist_data"][:user]["password"] = params[:user][:password]
+    render :new and return unless @user.valid?
+
+    session['devise.regist_data'] = { user: @user.attributes }
+    session['devise.regist_data'][:user]['password'] = params[:user][:password]
     @shop = @user.build_shop
     render :new_shop
   end
 
   def create_shop
-    @user = User.new(session["devise.regist_data"]["user"])
+    @user = User.new(session['devise.regist_data']['user'])
     @shop = Shop.new(shop_params)
-     unless @shop.valid?
-      render :new_shop and return
-     end
+    render :new_shop and return unless @shop.valid?
+
     @user.build_shop(@shop.attributes)
     @user.save
-    session["devise.regist_data"]["user"].clear
-    sign_in(:user,@user)
+    session['devise.regist_data']['user'].clear
+    sign_in(:user, @user)
   end
 
   private
 
   def shop_params
-    params.require(:shop).permit(:address,:phone_number,:station,:parking_id,:year,:month,:day,:url)
+    params.require(:shop).permit(:address, :phone_number, :station, :parking_id, :year, :month, :day, :url)
   end
-
 
   # GET /resource/sign_up
   # def new

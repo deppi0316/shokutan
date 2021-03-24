@@ -1,5 +1,4 @@
 class ShopsController < ApplicationController
-
   def edit
     @shop = Shop.find(params[:id])
   end
@@ -9,18 +8,15 @@ class ShopsController < ApplicationController
     if @shop.update(shop_params)
       redirect_to @shop
     else
-      render"edit"
+      render 'edit'
     end
   end
 
-  def show
-  end
+  def show; end
 
   private
 
   def shop_params
-    params.require(:shop).permit(:address,:phone_number,:station,:parking_id,:year,:month,:day,:url)
+    params.require(:shop).permit(:address, :phone_number, :station, :parking_id, :year, :month, :day, :url)
   end
-
 end
-

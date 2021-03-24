@@ -1,13 +1,11 @@
 class PostsController < ApplicationController
-  before_action :set_q, only: [:index, :show, :search]
+  before_action :set_q, only: %i[index show search]
 
   def index
     @tags = Post.tag_counts_on(:tags).most_used(10)
-    if @tag = params[:tag]
-      @post = Post.tagged_with(params[:tag]).order(created_at: :desc)
-    end
+    @post = Post.tagged_with(params[:tag]).order(created_at: :desc) if @tag = params[:tag]
     if params[:tag_name]
-      @post = Post.tagged_with("#{params[:tag_name]}").order(created_at: :desc)
+      @post = Post.tagged_with(params[:tag_name].to_s).order(created_at: :desc)
     else
       @posts = Post.limit(5).order(created_at: :desc)
       @all_ranks = Post.find(Like.group(:post_id).order('count(post_id) desc').limit(5).pluck(:post_id))
@@ -21,10 +19,10 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     if @post.save
-      flash[:success] = "投稿しました！"
-      return redirect_to root_path
+      flash[:success] = '投稿しました！'
+      redirect_to root_path
     else
-      render "new"
+      render 'new'
     end
   end
 
@@ -42,7 +40,7 @@ class PostsController < ApplicationController
     if @post.update(post_params)
       redirect_to root_path
     else
-      render "edit"
+      render 'edit'
     end
   end
 
@@ -54,22 +52,18 @@ class PostsController < ApplicationController
   def search
     @results = @q.result(distinct: true)
     @tags = Post.tag_counts_on(:tags).most_used(10)
-    if @tag = params[:tag]
-      @post = Post.tagged_with(params[:tag]).order(created_at: :desc)
-    end
-    if params[:tag_name]
-      @post = Post.tagged_with("#{params[:tag_name]}").order(created_at: :desc)
-    else
-    end
+    @post = Post.tagged_with(params[:tag]).order(created_at: :desc) if @tag = params[:tag]
+    @post = Post.tagged_with(params[:tag_name].to_s).order(created_at: :desc) if params[:tag_name]
   end
 
   private
-    def post_params
-      params.require(:post).permit(:title, :content, :ec_url , :delivery_url, :prefecture_id, :genre_id, :file, :tag_list).merge(user_id:current_user.id)
-    end
 
-    def set_q
-      @q = Post.ransack(params[:q])
-    end
+  def post_params
+    params.require(:post).permit(:title, :content, :ec_url, :delivery_url, :prefecture_id, :genre_id, :file,
+                                 :tag_list).merge(user_id: current_user.id)
+  end
 
+  def set_q
+    @q = Post.ransack(params[:q])
+  end
 end
