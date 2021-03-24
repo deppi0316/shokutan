@@ -29,6 +29,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @like = Like.new
+    @tags = Post.tag_counts_on(:tags).most_used(10)
   end
 
   def edit

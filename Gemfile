@@ -69,3 +69,5 @@ gem 'ransack'
 group :development do
   gem 'rubocop', require: false
 end
+
+gem "aws-sdk-s3", require: false
